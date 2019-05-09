@@ -3,7 +3,7 @@
   Displays the Graphical User Interface (GUI) and communicates with the robot.
 
   Authors:  Your professors (for the framework)
-    and Maria Bruner.
+    and Maria Bruner .
   Spring term, 2018-2019.
 """
 # DONE:  Put your name in the above.
