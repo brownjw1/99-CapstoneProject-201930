@@ -3,10 +3,10 @@
   Displays the Graphical User Interface (GUI) and communicates with the robot.
 
   Authors:  Your professors (for the framework)
-    and PUT_YOUR_NAME_HERE.
+    and Micah Fletcher.
   Spring term, 2018-2019.
 """
-# TODO 1:  Put your name in the above.
+# DONE 1:  Put your name in the above.
 
 import tkinter
 from tkinter import ttk
@@ -36,6 +36,7 @@ class MyLaptopDelegate(object):
     gets a message (name of the method, plus its arguments)
     from the ROBOT via MQTT.
     """
+
     def __init__(self, root):
         self.root = root  # type: tkinter.Tk
         self.mqtt_sender = None  # type: mqtt.MqttClient
@@ -44,6 +45,5 @@ class MyLaptopDelegate(object):
         self.mqtt_sender = mqtt_sender
 
     # TODO: Add methods here as needed.
-
 
 # TODO: Add functions here as needed.
