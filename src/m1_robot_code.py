@@ -31,6 +31,29 @@ class MyRobotDelegate(object):
         print_message_received("go", [left_motor_speed, right_motor_speed])
         self.robot.drive_system.go(left_motor_speed, right_motor_speed)
 
+    def move_forward(self,speed,distance):
+        '''Moves the robot forward a specified distance'''
+        degree_distance=distance/self.robot.drive_system.wheel_circumference*360
+        print_message_received("go_forward",[speed,distance])
+        self.robot.drive_system.right_motor.turn_on(speed)
+        self.robot.drive_system.left_motor.turn_on(speed)
+        while True:
+            if self.robot.drive_system.left_motor.get_position()>=degree_distance:
+                self.robot.drive_system.stop()
+                break
+
+    def move_backward(self,speed,distance):
+        '''Moves the robot forward a specified distance'''
+        degree_distance=distance/self.robot.drive_system.wheel_circumference*360
+        print_message_received("go_backward",[speed,distance])
+        self.robot.drive_system.right_motor.turn_on(speed)
+        self.robot.drive_system.left_motor.turn_on(speed)
+        while True:
+            if self.robot.drive_system.left_motor.get_position()>=degree_distance:
+                self.robot.drive_system.stop()
+                break
+
+
     # TODO: Add methods here as needed.
 
 
