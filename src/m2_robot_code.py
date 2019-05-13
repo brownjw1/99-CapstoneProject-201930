@@ -38,7 +38,7 @@ class MyRobotDelegate(object):
         self.robot.drive_system.right_motor.turn_on(speed)
         self.robot.drive_system.left_motor.turn_on((-speed))
         while True:
-            if self.robot.drive_system.right_motor.get_position() == degrees:
+            if self.robot.drive_system.right_motor.get_position() >= degrees:
                 self.robot.drive_system.right_motor.turn_off()
                 self.robot.drive_system.left_motor.turn_off()
                 self.robot.drive_system.right_motor.reset_position()
