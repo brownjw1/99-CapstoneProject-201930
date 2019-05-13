@@ -40,6 +40,8 @@ class MyRobotDelegate(object):
         while True:
             if self.robot.drive_system.left_motor.get_position()>=degree_distance:
                 self.robot.drive_system.stop()
+                self.robot.drive_system.left_motor.reset_position()
+                self.robot.drive_system.right_motor.reset_position()
                 break
 
     def move_backward(self,speed,distance):
@@ -51,6 +53,8 @@ class MyRobotDelegate(object):
         while True:
             if self.robot.drive_system.left_motor.get_position()>=degree_distance:
                 self.robot.drive_system.stop()
+                self.robot.drive_system.left_motor.reset_position()
+                self.robot.drive_system.right_motor.reset_position()
                 break
 
 
