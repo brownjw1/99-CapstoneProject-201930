@@ -39,7 +39,9 @@ def get_my_frame(root, window, mqtt_sender):
 
     spin_left_button.grid()
     spin_right_button.grid()
+    speed_label.grid()
     speed_entry_box.grid()
+    degrees_label.grid()
     degrees_entry_box.grid()
 
     spin_left_button['command'] = lambda: handle_spin_left(speed_entry_box,
