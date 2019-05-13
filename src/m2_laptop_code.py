@@ -25,6 +25,26 @@ def get_my_frame(root, window, mqtt_sender):
 
     # Add the rest of your GUI to your frame:
     # TODO: Put your GUI onto your frame (using sub-frames if you wish).
+    spin_left_button = ttk.Button(frame, text="spin_left")
+
+    spin_right_button = ttk.Button(frame, text='spin right')
+
+    speed_entry_box = ttk.Entry(frame, width=10)
+    speed_entry_box.insert(0, '100')
+
+    degrees_entry_box = ttk.Entry(frame, width=10)
+    degrees_entry_box.insert(0, '0')
+
+    spin_left_button.grid()
+    spin_right_button.grid()
+    speed_entry_box.grid()
+    degrees_entry_box.grid()
+
+    spin_left_button['command'] = lambda: handle_spin_left(speed_entry_box,
+                                                           degrees_entry_box,
+                                                           mqtt_sender)
+    spin_right_button['command'] = lambda: handle_spin_right(
+        speed_entry_box, degrees_entry_box, mqtt_sender)
 
     # Return your frame:
     return frame
@@ -46,4 +66,19 @@ class MyLaptopDelegate(object):
 
     # TODO: Add methods here as needed.
 
+
 # TODO: Add functions here as needed.
+
+def handle_spin_left(speed_entry_box, degrees_entry_box, mqtt_sender):
+    print("handle_spin_left: ", speed_entry_box.get(), degrees_entry_box.get())
+    speed = int(speed_entry_box.get())
+    degrees = int(degrees_entry_box.get())
+    mqtt_sender.send_message("spin_left", [speed, degrees])
+
+
+def handle_spin_right(speed_entry_box, degrees_entry_box, mqtt_sender):
+    print("handle_spin_right: ", speed_entry_box.get(),
+          degrees_entry_box.get())
+    speed = int(speed_entry_box.get())
+    degrees = int(degrees_entry_box.get())
+    mqtt_sender.send_message("spin_right", [speed, degrees])
