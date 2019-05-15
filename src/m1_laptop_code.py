@@ -31,16 +31,24 @@ def get_my_frame(root, window, mqtt_sender):
     speed_Entry.insert(0,100)
     distance_Entry = ttk.Entry(frame,width=8)
     distance_Entry.insert(1,100)
+    delta_Entry = ttk.Entry(frame,width=8)
+    delta_Entry.insert(2,100)
+    go_until_button = ttk.Button(frame, text="Go Until")
+
+
 
     forward_button.grid()
     backward_button.grid()
     speed_Entry.grid()
     distance_Entry.grid()
+    go_until_button.grid()
 
     forward_button["command"] = lambda: handle_forward(
         speed_Entry, distance_Entry, mqtt_sender)
     backward_button["command"] = lambda: handle_backward(
         speed_Entry, distance_Entry, mqtt_sender)
+    go_until_button['command']=lambda: handle_go_until(
+        speed_Entry,distance_Entry,delta_Entry,mqtt_sender)
 
 
 
@@ -61,6 +69,8 @@ class MyLaptopDelegate(object):
     def set_mqtt_sender(self, mqtt_sender):
         self.mqtt_sender = mqtt_sender
 
+
+
     # TODO: Add methods here as needed.
 
 
@@ -75,5 +85,12 @@ def handle_backward(speed_Entry,distance_Entry,mqtt_sender):
     speed=int(speed_Entry.get())*-1
     distance = int(distance_Entry.get())
     mqtt_sender.send_message("move_backward",[speed,distance])
+
+
+def handle_go_until(speed_Entry,distance_Entry,delta_Entry,mqtt_sender):
+    speed=int(speed_Entry.get())
+    distance=int(distance_Entry.get())
+    delta=int(delta_Entry.get())
+    mqtt_sender.send_message('move_until',[distance,delta,speed])
 
 

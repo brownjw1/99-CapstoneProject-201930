@@ -58,6 +58,26 @@ class MyRobotDelegate(object):
                 break
 
 
+
+    def go_until(self,distance,delta,speed):
+        print_message_received("go_until", [distance, delta, speed])
+        self.robot.drive_system.right_motor.turn_on(speed)
+        self.robot.drive_system.left_motor.turn_on(speed)
+        reading=self.robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
+
+        print(reading)
+        #if(reading>=distance-(2*delta)):
+        #    vel=20
+        #    self.robot.drive_system.right_motor.turn_on(vel)
+        #    self.robot.drive_system.left_motor.turn_on(vel)
+        #while True:
+        #    if reading<=distance+delta and reading>=distance-delta:
+        #        self.robot.drive_system.stop()
+        #        break
+
+
+
+
     # TODO: Add methods here as needed.
 
 
