@@ -45,15 +45,17 @@ class MyRobotDelegate(object):
                 self.robot.drive_system.right_motor.reset_position()
                 break
 
-    def spin_until_facing(signature, x, delta, speed):
+    def spin_until_facing(self, signature, x, delta, speed):
         """spins the robot to the right."""
         self.robot.drive_system.right_motor.turn_on(-speed)
         self.robot.drive_system.left_motor.turn_on(speed)
+        # while True:
+        #   if self
         while True:
-            if self.robot.camera
+            if self.robot.sensor_system.camera.get_biggest_blob() >= x:
                 self.robot.drive_system.right_motor.turn_off()
                 self.robot.drive_system.left_motor.turn_off()
-                self.robot.drive_system.right_motor.reset_position()
+
                 break
 
 
