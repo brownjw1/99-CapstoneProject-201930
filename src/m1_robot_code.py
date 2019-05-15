@@ -59,7 +59,7 @@ class MyRobotDelegate(object):
 
 
 
-    def go_until(self,distance,delta,speed):
+    def move_until(self,distance,delta,speed):
         print_message_received("go_until", [distance, delta, speed])
         self.robot.drive_system.right_motor.turn_on(speed)
         self.robot.drive_system.left_motor.turn_on(speed)

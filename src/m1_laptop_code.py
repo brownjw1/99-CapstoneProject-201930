@@ -42,12 +42,13 @@ def get_my_frame(root, window, mqtt_sender):
     speed_Entry.grid()
     distance_Entry.grid()
     go_until_button.grid()
+    delta_Entry.grid()
 
     forward_button["command"] = lambda: handle_forward(
         speed_Entry, distance_Entry, mqtt_sender)
     backward_button["command"] = lambda: handle_backward(
         speed_Entry, distance_Entry, mqtt_sender)
-    go_until_button['command']=lambda: handle_go_until(
+    go_until_button['command']=lambda: handle_move_until(
         speed_Entry,distance_Entry,delta_Entry,mqtt_sender)
 
 
@@ -87,7 +88,7 @@ def handle_backward(speed_Entry,distance_Entry,mqtt_sender):
     mqtt_sender.send_message("move_backward",[speed,distance])
 
 
-def handle_go_until(speed_Entry,distance_Entry,delta_Entry,mqtt_sender):
+def handle_move_until(speed_Entry,distance_Entry,delta_Entry,mqtt_sender):
     speed=int(speed_Entry.get())
     distance=int(distance_Entry.get())
     delta=int(delta_Entry.get())
