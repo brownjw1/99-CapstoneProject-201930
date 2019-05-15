@@ -80,10 +80,6 @@ class MyRobotDelegate(object):
                 reading+=list[k]
             reading=reading/len(list)
             print(reading)
-            if(reading>=distance-(2*delta)):
-                vel=10
-                self.robot.drive_system.right_motor.turn_on(vel)
-                self.robot.drive_system.left_motor.turn_on(vel)
         while True:
             reading=get_reading()
             if reading<=distance+delta and reading>=distance-delta:
