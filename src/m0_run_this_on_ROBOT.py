@@ -41,6 +41,7 @@ def main():
     delegate.set_mqtt_sender(mqtt_sender)
 
     mqtt_sender.connect_to_pc(lego_robot_number=9)
+    
     # DONE 3: Replace 99 in the above by YOUR team's robot number.
 
     time.sleep(1)  # To let the connection process complete
