@@ -69,7 +69,7 @@ class MyRobotDelegate(object):
             largest=0
             smallest=100
             for i in range(5):
-                list+=[self.robot.sensor_system.ir_proximity_sensor.get_distance()]
+                list+=[int(self.robot.sensor_system.ir_proximity_sensor.get_distance())]
                 if(list[i])>largest:
                     largest=list[i]
                 if list[i]<smallest:
