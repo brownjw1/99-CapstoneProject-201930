@@ -57,6 +57,7 @@ def get_my_frame(root, window, mqtt_sender):
     speed_entry_box.grid()
     degrees_label.grid()
     degrees_entry_box.grid()
+    spin_until_facing_button.grid()
     signature_label.grid()
     signature_entry_box.grid()
     x_label.grid()
@@ -69,7 +70,7 @@ def get_my_frame(root, window, mqtt_sender):
                                                            mqtt_sender)
     spin_right_button['command'] = lambda: handle_spin_right(
         speed_entry_box, degrees_entry_box, mqtt_sender)
-    
+
     spin_until_facing_button['command'] = lambda: handle_spin_until_facing(
         signature_entry_box, x_entry_box, delta_entry_box,
         speed_entry_box)
