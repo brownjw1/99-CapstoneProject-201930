@@ -29,6 +29,8 @@ def get_my_frame(root, window, mqtt_sender):
 
     spin_right_button = ttk.Button(frame, text='spin right')
 
+    spin_until_facing_button = ttk.Button(frame, text='spin_until_facing')
+
     speed_label = ttk.Label(frame, text="Enter Speed below")
     speed_entry_box = ttk.Entry(frame, width=10)
     speed_entry_box.insert(0, '100')
@@ -36,6 +38,18 @@ def get_my_frame(root, window, mqtt_sender):
     degrees_label = ttk.Label(frame, text="Enter Degrees below")
     degrees_entry_box = ttk.Entry(frame, width=10)
     degrees_entry_box.insert(0, '0')
+
+    signature_label = ttk.Label(frame, text='Enter SIG1 below')
+    signature_entry_box = ttk.Entry(frame, width=10)
+    signature_entry_box.insert(0, 'SIG1')
+
+    x_label = ttk.Label(frame, text='Enter size below')
+    x_entry_box = ttk.Entry(frame, width=10)
+    x_entry_box.insert(0, '20')
+
+    delta_label = ttk.Label(frame, text='Enter delta below')
+    delta_entry_box = ttk.Entry(frame, width=10)
+    delta_entry_box.insert(0, '20')
 
     spin_left_button.grid()
     spin_right_button.grid()
@@ -86,3 +100,14 @@ def handle_spin_right(speed_entry_box, degrees_entry_box, mqtt_sender):
     speed = int(speed_entry_box.get())
     degrees = int(degrees_entry_box.get())
     mqtt_sender.send_message("spin_right", [speed, degrees])
+
+
+def handle_spin_until_facing(signature_entry_box, x_entry_box, delta_entry_box,
+                             speed_entry_box):
+    print('handle_spin_until_facing: ', signature_entry_box.get(),
+          x_entry_box.get(), delta_entry_box.get(), speed_entry_box.get())
+    signature = (signature_entry_box.get())
+    x = x_entry_box.get()
+    delta = delta_entry_box.get()
+    speed = speed_entry_box.get()
+    mqtt_sender.send_message("spin_until_facing", [signature, x, delta, speed])
