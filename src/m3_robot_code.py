@@ -35,24 +35,30 @@ class MyRobotDelegate(object):
                 self.robot.arm_and_claw.motor.turn_off()
                 break
 
-    def arm_down(self, speed):
-        """Moves arm to 0"""
-        self.robot.arm_and_claw.motor.reset_position(speed)
-
     def arm_calibrate(self, speed):
         """Moves the arm up until its touch sensor is pressed and then down
         until its motor has spun 14.2*360 degrees, and then sets the arm
         motor's position to 0"""
-        self.robot.arm_and_claw.motor.turn_on(speed)
-        if self.robot.arm_and_claw.motor.get_position() == 360*14.2:
-            self.robot.arm_and_claw.motor.turn_off()
-            self.robot.arm_and_claw.motor.reset_position()
+        self.robot.arm_and_claw.motor.arm_up(speed)
+
+        self.robot.arm_and_claw.motor.turn_on(-speed)
+        while True:
+            if self.robot.arm_and_claw.motor.get_position() == 360*14.2:
+                self.robot.arm_and_claw.motor.turn_off()
+                self.robot.arm_and_claw.motor.reset_position()
+                break
 
     def arm_to(self, speed, location):
-        """Moves the arm's motor to position X"""
+        """Moves the arm's motor to a provided location"""
         self.robot.arm_and_claw.motor.turn_on(speed)
-        if self.robot.arm_and_claw.motor.get_position() == location:
-            self.robot.arm_and_claw.motor.turn_off()
+        while True:
+            if self.robot.arm_and_claw.motor.get_position() == location:
+                self.robot.arm_and_claw.motor.turn_off()
+                break
+
+    def arm_down(self, speed):
+        """Moves arm to 0"""
+        self.robot.arm_and_claw.motor.arm_to(speed, 0)
 
 
 def print_message_received(method_name, arguments=None):
