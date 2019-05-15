@@ -63,17 +63,31 @@ class MyRobotDelegate(object):
         print_message_received("go_until", [distance, delta, speed])
         self.robot.drive_system.right_motor.turn_on(speed)
         self.robot.drive_system.left_motor.turn_on(speed)
-        reading=self.robot.sensor_system.ir_proximity_sensor.get_distance_in_inches()
+        reading=0
+        list=[]
+        largest=0
+        smallest=100
+        for i in range(5):
+            list+=[self.robot.sensor_system.ir_proximity_sensor.get_distance()]
+            if(list[i])>largest:
+                largest=list[i]
+            if list[i]<smallest:
+                smallest=list[i]
 
+        list.remove(largest)
+        list.remove(smallest)
+        for k in range(len(list)):
+            reading+=list[k]
+        reading=reading/len(list)
         print(reading)
-        #if(reading>=distance-(2*delta)):
-        #    vel=20
-        #    self.robot.drive_system.right_motor.turn_on(vel)
-        #    self.robot.drive_system.left_motor.turn_on(vel)
-        #while True:
-        #    if reading<=distance+delta and reading>=distance-delta:
-        #        self.robot.drive_system.stop()
-        #        break
+        if(reading>=distance-(2*delta)):
+            vel=20
+            self.robot.drive_system.right_motor.turn_on(vel)
+            self.robot.drive_system.left_motor.turn_on(vel)
+        while True:
+            if reading<=distance+delta and reading>=distance-delta:
+                self.robot.drive_system.stop()
+                break
 
 
 
