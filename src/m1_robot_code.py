@@ -78,13 +78,13 @@ class MyRobotDelegate(object):
             list.remove(smallest)
             for k in range(len(list)):
                 reading+=list[k]
-            reading=reading/len(list)
-            print(reading)
-            while True:
-                reading=get_reading()
-                if reading<=distance+delta and reading>=distance-delta:
-                    self.robot.drive_system.stop()
-                    break
+            print(reading )
+            return (reading / len(list))
+        while True:
+            reading=get_reading()
+            if reading<=distance+delta and reading>=distance-delta:
+                self.robot.drive_system.stop()
+                break
 
 
 
