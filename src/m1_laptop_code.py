@@ -34,14 +34,21 @@ def get_my_frame(root, window, mqtt_sender):
     delta_Entry = ttk.Entry(frame,width=8)
     delta_Entry.insert(2,100)
     go_until_button = ttk.Button(frame, text="Go Until")
+    speed_Entry_Label=ttk.Label(frame,text='Enter a speed')
+    distance_Entry_Label=ttk.Label(frame,text='Enter a distance')
+    delta_Entry_Label=ttk.Label(frame,text='Enter a tolerance')
+
 
 
 
     forward_button.grid()
     backward_button.grid()
-    speed_Entry.grid()
-    distance_Entry.grid()
     go_until_button.grid()
+    speed_Entry_Label.grid()
+    speed_Entry.grid()
+    distance_Entry_Label.grid()
+    distance_Entry.grid()
+    delta_Entry_Label.grid()
     delta_Entry.grid()
 
     forward_button["command"] = lambda: handle_forward(
