@@ -114,11 +114,11 @@ def handle_spin_right(speed_entry_box, degrees_entry_box, mqtt_sender):
 
 
 def handle_spin_until_facing(signature_entry_box, x_entry_box, delta_entry_box,
-                             speed_entry_box):
+                             speed_entry_box, mqtt_sender):
     print('handle_spin_until_facing: ', signature_entry_box.get(),
           x_entry_box.get(), delta_entry_box.get(), speed_entry_box.get())
-    signature = (signature_entry_box.get())
-    x = x_entry_box.get()
-    delta = delta_entry_box.get()
-    speed = speed_entry_box.get()
+    signature = signature_entry_box.get()
+    x = int(x_entry_box.get())
+    delta = int(delta_entry_box.get())
+    speed = int(speed_entry_box.get())
     mqtt_sender.send_message("spin_until_facing", [signature, x, delta, speed])
