@@ -35,6 +35,7 @@ class MyRobotDelegate(object):
     # TODO: Add methods here as needed.
     def spin_left(self, speed, degrees):
         """spins the robot to the left."""
+        print('turn left')
         self.robot.drive_system.right_motor.turn_on(speed)
         self.robot.drive_system.left_motor.turn_on((-speed))
         while True:
@@ -47,8 +48,9 @@ class MyRobotDelegate(object):
 
     def spin_right(self, speed, degrees):
         """spins the robot to the left."""
+        print('turn right')
         self.robot.drive_system.right_motor.turn_on(-speed)
-        self.robot.drive_system.left_motor.turn_on((speed))
+        self.robot.drive_system.left_motor.turn_on(speed)
         while True:
             if self.robot.drive_system.right_motor.get_position() / 5.5 <= \
                     degrees:
