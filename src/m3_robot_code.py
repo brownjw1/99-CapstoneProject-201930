@@ -70,6 +70,16 @@ class MyRobotDelegate(object):
         """Moves arm to 0"""
         self.arm_to(speed, 0)
 
+    def go_until_color(self, color, speed):
+        """Moves robot to given color"""
+        self.robot.drive_system.right_motor.turn_on(speed)
+        self.robot.drive_system.left_motor.turn_on(speed)
+
+        while True:
+            if self.robot.sensor_system.color_sensor.get_color_as_name() == color:
+                self.robot.drive_system.stop()
+                break
+
 
 def print_message_received(method_name, arguments=None):
     print()
