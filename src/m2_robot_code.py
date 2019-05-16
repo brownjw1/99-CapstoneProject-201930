@@ -67,21 +67,24 @@ class MyRobotDelegate(object):
                 print('turn left until', self.robot.sensor_system.camera
                       .get_biggest_blob(),
                       (x - delta))
-                self.robot.drive_system.right_motor.turn_on(speed)
-                self.robot.drive_system.left_motor.turn_on((-speed))
+                # self.robot.drive_system.right_motor.turn_on(speed)
+                # self.robot.drive_system.left_motor.turn_on((-speed))
 
-                if self.robot.sensor_system.camera.get_biggest_blob().center \
+                if self.robot.sensor_system.camera.get_biggest_blob(
+
+                ).center.x \
                         >= x:
                     self.robot.drive_system.right_motor.turn_off()
                     self.robot.drive_system.left_motor.turn_off()
                     break
-            if self.robot.sensor_system.camera.get_biggest_blob().center > \
+            elif self.robot.sensor_system.camera.get_biggest_blob().center.x \
+                    > \
                     x + delta:
                 print('turn right until',
                       self.robot.sensor_system.camera.get_biggest_blob(),
                       (x - delta))
-                self.robot.drive_system.right_motor.turn_on(-speed)
-                self.robot.drive_system.left_motor.turn_on(speed)
+                # self.robot.drive_system.right_motor.turn_on(-speed)
+                # self.robot.drive_system.left_motor.turn_on(speed)
 
                 if self.robot.sensor_system.camera.get_biggest_blob().center \
                         <= x:
