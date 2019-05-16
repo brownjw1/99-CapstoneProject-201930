@@ -73,7 +73,7 @@ def get_my_frame(root, window, mqtt_sender):
 
     spin_until_facing_button['command'] = lambda: handle_spin_until_facing(
         signature_entry_box, x_entry_box, delta_entry_box,
-        speed_entry_box)
+        speed_entry_box, mqtt_sender)
 
     # Return your frame:
     return frame
