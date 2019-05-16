@@ -33,7 +33,7 @@ def get_my_frame(root, window, mqtt_sender):
 
     speed_label = ttk.Label(frame, text="Enter Speed below")
     speed_entry_box = ttk.Entry(frame, width=10)
-    speed_entry_box.insert(0, '100')
+    speed_entry_box.insert(0, '50')
 
     degrees_label = ttk.Label(frame, text="Enter Degrees below")
     degrees_entry_box = ttk.Entry(frame, width=10)
