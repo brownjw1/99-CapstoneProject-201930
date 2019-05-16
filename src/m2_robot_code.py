@@ -47,10 +47,14 @@ class MyRobotDelegate(object):
 
     def spin_until_facing(self, signature, x, delta, speed):
         """spins the robot to the right."""
-
+        print('testing spin until')
         while True:
+            print('in while loop')
             if self.robot.sensor_system.camera.get_biggest_blob().center < \
                     x - delta:
+                print('turn left until', self.robot.sensor_system.camera
+                      .get_biggest_blob(),
+                      (x - delta))
                 self.robot.drive_system.right_motor.turn_on(speed)
                 self.robot.drive_system.left_motor.turn_on((-speed))
 
@@ -61,6 +65,9 @@ class MyRobotDelegate(object):
                     break
             if self.robot.sensor_system.camera.get_biggest_blob().center > \
                     x + delta:
+                print('turn right until',
+                      self.robot.sensor_system.camera.get_biggest_blob(),
+                      (x - delta))
                 self.robot.drive_system.right_motor.turn_on(-speed)
                 self.robot.drive_system.left_motor.turn_on(speed)
 
