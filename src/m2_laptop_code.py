@@ -37,7 +37,7 @@ def get_my_frame(root, window, mqtt_sender):
 
     degrees_label = ttk.Label(frame, text="Enter Degrees below")
     degrees_entry_box = ttk.Entry(frame, width=10)
-    degrees_entry_box.insert(0, '0')
+    degrees_entry_box.insert(0, '45')
 
     signature_label = ttk.Label(frame, text='Enter SIG1 below')
     signature_entry_box = ttk.Entry(frame, width=10)

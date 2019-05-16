@@ -45,12 +45,24 @@ class MyRobotDelegate(object):
                 self.robot.drive_system.right_motor.reset_position()
                 break
 
+    def spin_right(self, speed, degrees):
+        """spins the robot to the left."""
+        self.robot.drive_system.right_motor.turn_on(-speed)
+        self.robot.drive_system.left_motor.turn_on((speed))
+        while True:
+            if self.robot.drive_system.right_motor.get_position() / 5.5 <= \
+                    degrees:
+                self.robot.drive_system.right_motor.turn_off()
+                self.robot.drive_system.left_motor.turn_off()
+                self.robot.drive_system.right_motor.reset_position()
+                break
+
     def spin_until_facing(self, signature, x, delta, speed):
         """spins the robot to the right."""
         print('testing spin until')
         while True:
             print('in while loop')
-            if self.robot.sensor_system.camera.get_biggest_blob().center < \
+            if self.robot.sensor_system.camera.get_biggest_blob().center.x < \
                     x - delta:
                 print('turn left until', self.robot.sensor_system.camera
                       .get_biggest_blob(),
