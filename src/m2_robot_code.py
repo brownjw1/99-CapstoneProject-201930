@@ -65,8 +65,8 @@ class MyRobotDelegate(object):
         print('testing spin until')
         while True:
             print('in while loop')
-            if self.robot.sensor_system.camera.get_biggest_blob().center.x < \
-                    x - delta:
+            if self.robot.sensor_system.camera.get_biggest_blob().center.x > \
+                    x + delta:
                 print('turn left until', self.robot.sensor_system.camera
                       .get_biggest_blob().center.x,
                       (x - delta))
@@ -75,8 +75,7 @@ class MyRobotDelegate(object):
 
 
             elif self.robot.sensor_system.camera.get_biggest_blob().center.x \
-                    > \
-                    x + delta:
+                    < x - delta:
                 print('turn right until',
                       self.robot.sensor_system.camera.get_biggest_blob().center.x,
                       (x + delta))
