@@ -52,8 +52,9 @@ class MyRobotDelegate(object):
         self.robot.drive_system.right_motor.turn_on(-speed)
         self.robot.drive_system.left_motor.turn_on(speed)
         while True:
-            if self.robot.drive_system.right_motor.get_position() / 5.5 >= \
-                    degrees:
+            print('in while loop')
+            if self.robot.drive_system.right_motor.get_position() / 5.5 <= \
+                    -degrees:
                 self.robot.drive_system.right_motor.turn_off()
                 self.robot.drive_system.left_motor.turn_off()
                 self.robot.drive_system.right_motor.reset_position()
@@ -67,33 +68,26 @@ class MyRobotDelegate(object):
             if self.robot.sensor_system.camera.get_biggest_blob().center.x < \
                     x - delta:
                 print('turn left until', self.robot.sensor_system.camera
-                      .get_biggest_blob(),
+                      .get_biggest_blob().center.x,
                       (x - delta))
-                # self.robot.drive_system.right_motor.turn_on(speed)
-                # self.robot.drive_system.left_motor.turn_on((-speed))
+                self.robot.drive_system.right_motor.turn_on(speed)
+                self.robot.drive_system.left_motor.turn_on((-speed))
 
-                if self.robot.sensor_system.camera.get_biggest_blob(
 
-                ).center.x \
-                        >= x:
-                    self.robot.drive_system.right_motor.turn_off()
-                    self.robot.drive_system.left_motor.turn_off()
-                    break
             elif self.robot.sensor_system.camera.get_biggest_blob().center.x \
                     > \
                     x + delta:
                 print('turn right until',
-                      self.robot.sensor_system.camera.get_biggest_blob(),
-                      (x - delta))
-                # self.robot.drive_system.right_motor.turn_on(-speed)
-                # self.robot.drive_system.left_motor.turn_on(speed)
+                      self.robot.sensor_system.camera.get_biggest_blob().center.x,
+                      (x + delta))
+                self.robot.drive_system.right_motor.turn_on(-speed)
+                self.robot.drive_system.left_motor.turn_on(speed)
 
-                if self.robot.sensor_system.camera.get_biggest_blob().center \
-                        <= x:
-                    self.robot.drive_system.right_motor.turn_off()
-                    self.robot.drive_system.left_motor.turn_off()
 
-                    break
+            else:
+                self.robot.drive_system.right_motor.turn_off()
+                self.robot.drive_system.left_motor.turn_off()
+                break
 
 
 def print_message_received(method_name, arguments=None):

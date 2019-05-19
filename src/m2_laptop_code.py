@@ -43,9 +43,9 @@ def get_my_frame(root, window, mqtt_sender):
     signature_entry_box = ttk.Entry(frame, width=10)
     signature_entry_box.insert(0, 'SIG1')
 
-    x_label = ttk.Label(frame, text='Enter value between 0 - 319 below')
+    x_label = ttk.Label(frame, text='Enter value between 0 - 250 below')
     x_entry_box = ttk.Entry(frame, width=10)
-    x_entry_box.insert(0, '160')
+    x_entry_box.insert(0, '140')
 
     delta_label = ttk.Label(frame, text='Enter delta below')
     delta_entry_box = ttk.Entry(frame, width=10)
